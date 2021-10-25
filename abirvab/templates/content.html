@@ -1,0 +1,220 @@
+{% extends 'base-main.html' %}
+
+{% block content_block %}
+
+<div class="main">
+    <div class="wrapper-content">
+        {% autoescape off %}
+
+        {% for item in allView %}
+
+        {% if contentType == "kobita"%}
+        <div class="content" style="text-align: center;">
+
+            <p>
+                {{item.kobitaText}}
+            </p>
+            <p class="authorName">
+                {{item.authorFirstName}}
+                {{item.authorLastName}}
+            </p>
+        </div>
+        {% endif %}
+
+        {% if contentType == "golpo" %}
+        <div class="content" style="text-align: justify;">
+            <p>
+                {{item.golpoText}}
+            </p>
+            <p class="authorName">
+                {{item.authorFirstName}}
+                {{item.authorLastName}}
+            </p>
+        </div>
+
+        {% endif %}
+
+        {% if contentType == "chobi" %}
+        <div class="content" style="text-align: center;">
+            <p>
+                <img src="{{item.chobiField.url}}" alt="test">
+                {{item.chobiText}}
+            </p>
+            <p class="authorName">
+                {{item.authorFirstName}}
+                {{item.authorLastName}}
+            </p>
+        </div>
+
+        {% endif %}
+        {% if contentType == "cinemareviews" %}
+        <div class="content">
+            <p>{% if item.cinemaReviewFile.url.lower|slice:"-3:" == "mp4" %}
+
+                <video src="{{item.cinemaReviewFile.url}}" controls></video>
+                {% else %}
+                <img src="{{item.cinemaReviewFile.url}}" alt="{{item.cinemaReviewText}}">
+                {% endif %}
+                {{item.cinemaReviewText}}
+            </p>
+            <p class="authorName">
+                {{item.authorFirstName}}
+                {{item.authorLastName}}
+            </p>
+        </div>
+        {% endif %}
+        {% if contentType == "boireviews" %}
+        <div class="content">
+            <p>
+                {% if item.boiReviewFile.url.lower|slice:"-3:" == "mp4" %}
+
+                <video src="{{item.boiReviewFile.url}}" controls></video>
+                {% else %}
+                <img src="{{item.boiReviewFile.url}}" alt="{{item.boiReviewText}}">
+                {% endif %}
+                {{item.boiReviewText}}
+            </p>
+            <p class="authorName">
+                {{item.authorFirstName}}
+                {{item.authorLastName}}
+            </p>
+        </div>
+        {% endif %}
+        {% if contentType == "rannabanna" %}
+        <div class="content">
+            <p>
+                {% if item.rannaBannaFile.url.lower|slice:"-3:" == "mp4" %}
+
+                <video src="{{item.rannaBannaFile.url}}" controls></video>
+                {% else %}
+                <img src="{{item.rannaBannaFile.url}}" alt="{{item.rannaBannaText}}">
+                {% endif %}
+
+                {{item.rannaBannaText}}
+            </p>
+            <p class="authorName">
+                {{item.authorFirstName}}
+                {{item.authorLastName}}
+            </p>
+        </div>
+        {% endif %}
+        {% if contentType == "probondho" %}
+        <div class="content">
+            <p>
+                {{item.probondhoText}}
+            </p>
+            <p class="authorName">
+                {{item.authorFirstName}}
+                {{item.authorLastName}}
+            </p>
+        </div>
+        {% endif %}
+
+        {% if contentType == "boi" %}
+        <div class="content">
+            <p>
+                <a href="{{item.boiBaharFile.url}}" attributes-list download> Link Text </a>
+
+                {{item.boiBaharText}}
+            </p>
+            <p class="authorName">
+                {{item.authorFirstName}}
+                {{item.authorLastName}}
+            </p>
+        </div>
+        {% endif %}
+
+        {% if contentType == "other" %}
+        <div class="content">
+            <p>
+                {% if item.otherFile %}
+                {% if item.otherFile.url.lower|slice:"-3:" == "mp4" %}
+
+                <video src="{{item.otherFile.url}}" controls></video>
+                {% else %}
+                <img src="{{item.otherFile.url}}" alt="{{item.otherText}}">
+                {% endif %}
+                {% endif %}
+                {{item.otherText}}
+            </p>
+            <p class="authorName">
+                {{item.authorFirstName}}
+                {{item.authorLastName}}
+            </p>
+        </div>
+        {% endif %}
+        {% endfor %}
+
+        {% endautoescape %}
+
+        <div class="content">
+
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti provident, inventore ipsam
+                molestias corporis praesentium voluptate nisi sint distinctio illo vitae iusto, est asperiores dolor
+                amet dolores ipsum temporibus impedit consectetur omnis! Iste atque deleniti aut, repellat pariatur
+                commodi dolorum?</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti provident, inventore ipsam
+                molestias corporis praesentium voluptate nisi sint distinctio illo vitae iusto, est asperiores dolor
+                amet dolores ipsum temporibus impedit consectetur omnis! Iste atque deleniti aut, repellat pariatur
+                commodi dolorum?</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti provident, inventore ipsam
+                molestias corporis praesentium voluptate nisi sint distinctio illo vitae iusto, est asperiores dolor
+                amet dolores ipsum temporibus impedit consectetur omnis! Iste atque deleniti aut, repellat pariatur
+                commodi dolorum?</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti provident, inventore ipsam
+                molestias corporis praesentium voluptate nisi sint distinctio illo vitae iusto, est asperiores dolor
+                amet dolores ipsum temporibus impedit consectetur omnis! Iste atque deleniti aut, repellat pariatur
+                commodi dolorum?</p>
+
+        </div>
+        <div class="content">
+
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti provident, inventore ipsam
+                molestias corporis praesentium voluptate nisi sint distinctio illo vitae iusto, est asperiores dolor
+                amet dolores ipsum temporibus impedit consectetur omnis! Iste atque deleniti aut, repellat pariatur
+                commodi dolorum?</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti provident, inventore ipsam
+                molestias corporis praesentium voluptate nisi sint distinctio illo vitae iusto, est asperiores dolor
+                amet dolores ipsum temporibus impedit consectetur omnis! Iste atque deleniti aut, repellat pariatur
+                commodi dolorum?</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti provident, inventore ipsam
+                molestias corporis praesentium voluptate nisi sint distinctio illo vitae iusto, est asperiores dolor
+                amet dolores ipsum temporibus impedit consectetur omnis! Iste atque deleniti aut, repellat pariatur
+                commodi dolorum?</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti provident, inventore ipsam
+                molestias corporis praesentium voluptate nisi sint distinctio illo vitae iusto, est asperiores dolor
+                amet dolores ipsum temporibus impedit consectetur omnis! Iste atque deleniti aut, repellat pariatur
+                commodi dolorum?</p>
+
+        </div>
+        <div class="content">
+
+            <p>Lorem ipsum dolor sit amet consectetur <br> adipisicing elit. Deleniti provident, inventore ipsam
+                molestias corporis praesentium voluptate nisi sint distinctio illo vitae iusto, est asperiores dolor
+                amet dolores ipsum temporibus impedit cons <br> ectetur omnis! Iste atque deleniti aut, repellat
+                pariatur
+                commodi dolorum?</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti provident, inventore ipsam
+                molestias corporis praesentium voluptate nisi sint distinctio illo vitae iusto, est asperiores dolor
+                amet dolores ipsum temporibus impedit consectetur omnis! Iste atque deleniti aut, repellat pariatur
+                commodi dolorum?</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti provident, inventore ipsam
+                molestias corporis praesentium voluptate nisi sint distinctio illo vitae iusto, est asperiores dolor
+                amet dolores ipsum temporibus impedit consectetur omnis! Iste atque deleniti aut, repellat pariatur
+                commodi dolorum?</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti provident, inventore ipsam
+                molestias corporis praesentium voluptate nisi sint distinctio illo vitae iusto, est asperiores dolor
+                amet dolores ipsum temporibus impedit consectetur omnis! Iste atque deleniti aut, repellat pariatur
+                commodi dolorum?</p>
+
+        </div>
+    </div>
+    <div class="wrapper-suggestions">
+        <h3>jdskfj ds jfkldsj dfsdfdf dfdff</h3>
+        <h3>jdskfj ds jfkldsdsgd dfjf</h3>
+        <h3>jdskfj ds jfkldsjf fgdf khjdf g dfgjk dfsg</h3>
+    </div>
+</div>
+</div>
+
+{% endblock content_block %}

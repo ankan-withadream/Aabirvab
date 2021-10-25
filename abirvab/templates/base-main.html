@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Aabirvab - Kobita</title>
+        <!-- <link rel="stylesheet" href="style.css"> -->
+        {% load static %}
+        <link rel="stylesheet" href="/static/style.css" >
+        <link rel="stylesheet" href="{% static '/style.css' %}">
+
+</head>
+
+<body>
+    <div class="_3dot">
+        <span id="the3dot" onclick="openNav()">
+            <img src="/static/menu.png" height="20px" width="20px" alt="...">
+        </span>
+    </div>
+
+
+
+    <div class="wrapper-body">
+        <div class="wrapper-header">
+            <div class="logo" height="1vh">
+                <span>আ বি র্ভা ব</span>
+            </div>
+        </div>
+
+        <div class="wrapper-menu">
+            <div class="menu">
+                <!-- <form action="" method="post"></form> -->
+                <a class="menu-item" href="/view/kobita">কবিতাসমগ্র</a>
+                <a class="menu-item" href="/view/golpo">গল্পকথা </a>
+                <a class="menu-item" href="/view/chobi">ছবি-টবি</a>
+                <a class="menu-item" href="/view/cinemareviews">সিনেমা রিভিউ</a>
+                <a class="menu-item" href="/view/boireviews">বই রিভিউ</a>
+                <!-- <a class="menu-item" href="/view/goddo">গদ্যসমগ্র</a> -->
+                <a class="menu-item" href="/view/rannabanna">রান্নাবান্না</a>
+                <a class="menu-item" href="/view/probondho">প্রবন্ধ</a>
+                <a class="menu-item" href="/view/boi">বই-বাহার</a>
+            </div>
+        </div>
+
+        {% block content_block %}
+
+        
+        {% endblock %}
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="/view/kobita">কবিতাসমগ্র</a>
+            <a href="/view/golpo">গল্পকথা </a>
+            <a href="/view/chobi">ছবি-টবি</a>
+            <a href="/view/cinemareviews">সিনেমা রিভিউ</a>
+            <a href="/view/boireviews">বই রিভিউ</a>
+            <!-- <a href="/view/goddo">গদ্যসমগ্র</a> -->
+            <a href="/view/rannabanna">রান্নাবান্না</a>
+            <a href="/view/probondho">প্রবন্ধ</a>
+            <a href="/view/boi">বই-বাহার</a>
+            <a href="/view/other">শৈল্পিক</a>
+        </div>
+        
+
+
+    <script>
+        let actOn3dotClick = document.getElementById("the3dot").addEventListener("click", openNav);
+        /* Set the width of the side navigation to 250px */
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "25%";
+        }
+
+        /* Set the width of the side navigation to 0 */
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
+</body>
+
+</html>

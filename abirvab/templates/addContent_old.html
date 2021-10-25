@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Aabirvab - Kobita</title>
+        <!-- <link rel="stylesheet" href="style.css"> -->
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+
+</head>
+
+<body>
+    <div class="_3dot">
+        <span id="the3dot" onclick="openNav()">
+            <img src="static/menu.png" height="20px" width="20px" alt="">
+        </span>
+    </div>
+
+
+
+    <div class="wrapper-body">
+        <div class="wrapper-header">
+            <div class="logo">
+                <p>LOGO</p>
+            </div>
+        </div>
+
+        <div class="wrapper-menu">
+            <div class="menu">
+                <!-- <form action="" method="post"></form> -->
+                <a class="menu-item">কবিতাসমগ্র</a>
+                <a class="menu-item">গল্পকথা </a>
+                <a class="menu-item">ছবি-টবি</a>
+                <a class="menu-item">সিনেমা রিভিউ</a>
+                <a class="menu-item">বই রিভিউ</a>
+                <a class="menu-item">গদ্যসমগ্র</a>
+                <a class="menu-item">রান্নাবান্না</a>
+                <a class="menu-item">প্রবন্ধ</a>
+                <a class="menu-item">বই-বাহার</a>
+            </div>
+        </div>
+        
+<div class="main">
+    <div class="wrapper-content">
+        <div class="addcontent">
+            <form action="/addcontent" method="post" class="addcontent-form" id="content-form">
+                {% csrf_token %}
+                <select name="contentType" id="contentType" form="content-form">
+                    <option value="kobita">কবিতা</option>
+                    <option value="golpo">গল্পকথা</option>
+                    <option value="chobi">ছবি</option>
+                    <option value="cinemareview">সিনেমা রিভিউ</option>
+                    <option value="boiReview">বই রিভিউ</option>
+                    <option value="rannaBanna">রান্নাবান্না</option>
+                    <option value="probondho">প্রবন্ধ</option>
+                    <option value="boiBahar">বই-বাহার</option>
+                    <option value="other">Shoilpik</option>
+                </select>
+                <textarea type="text" name="kobitaText" id="kobitaText" placeholder="Enter Kobita here">
+                </textarea>
+                <input type="text" name="authorFirstName" id="authorFirstName">
+                <input type="text" name="authorLastName" id="authorLastName">
+                <input type="button" value="submit">
+                <button type="submit">add</button>
+            </form>
+        </div>
+    </div>
+    <div class="wrapper-suggestions">
+        <h3>jdskfj ds jfkldsj dfsdfdf dfdff</h3>
+        <h3>jdskfj ds jfkldsdsgd dfjf</h3>
+        <h3>jdskfj ds jfkldsjf fgdf khjdf g dfgjk dfsg</h3>
+    </div>
+</div>
+</div>
+
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="content/">কবিতাসমগ্র</a>
+    <a href="content/">গল্পকথা </a>
+    <a href="content/">ছবি-টবি</a>
+    <a href="content/">সিনেমা রিভিউ</a>
+    <a href="content/">বই রিভিউ</a>
+    <a href="content/">গদ্যসমগ্র</a>
+    <a href="content/">রান্নাবান্না</a>
+    <a href="content/">প্রবন্ধ</a>
+    <a href="content/">বই-বাহার</a>
+</div>
+
+
+
+<script>
+    let actOn3dotClick = document.getElementById("the3dot").addEventListener("click", openNav);
+    /* Set the width of the side navigation to 250px */
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "25%";
+    }
+
+    /* Set the width of the side navigation to 0 */
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+    }
+</script>
+</body>
+
+</html>

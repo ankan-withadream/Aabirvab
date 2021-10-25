@@ -1,0 +1,87 @@
+
+{% extends 'base-main.html' %}
+    
+{% block content_block %}    
+<div class="main">
+    <div class="wrapper-content">
+        <div class="addcontent">
+            <form action="/addcontent" method="post" enctype="multipart/form-data" class="addcontent-form" id="content-form">
+                {% csrf_token %}
+                <select required name="contentType" id="contentType" form="content-form">
+                    <option value="" disabled selected>Choose a content type</option>
+                    <option value="kobita">কবিতা</option>
+                    <option value="golpo">গল্পকথা</option>
+                    <option value="chobi">ছবি</option>
+                    <option value="cinemaReview">সিনেমা রিভিউ</option>
+                    <option value="boiReview">বই রিভিউ</option>
+                    <option value="rannaBanna">রান্নাবান্না</option>
+                    <option value="probondho">প্রবন্ধ</option>
+                    <option value="boiBahar">বই-বাহার</option>
+                    <option value="other">শৈল্পিক</option>
+                </select>
+                <textarea type="text" class="main-media" name="kobitaText" id="kobitaText" placeholder="Enter Kobita here" style="display: none;">
+                </textarea>
+                <textarea type="text" class="main-media" name="golpoText" id="golpoText" placeholder="Enter Kobita here" style="display: none;">
+                </textarea>
+                <input type="file" class="main-media" name="imageFile" id="imageFile" style="display: none;" accept="image/*">
+                <input type="file" class="main-media" name="videoField" id="videoField" accept="video/mp4, image/*" style="display: none;">
+                <input type="file" class="main-media" name="pdfField" id="pdfField" accept="application/pdf" style="display: none;">
+                <input type="text" name="authorFirstName" id="authorFirstName" >
+                <input type="text" name="authorLastName" id="authorLastName">
+                <button type="submit" id="submitButton">Add</button>
+            </form>
+        </div>
+    </div>
+    <div class="wrapper-suggestions">
+        <h3>jdskfj ds jfkldsj dfsdfdf dfdff</h3>
+        <h3>jdskfj ds jfkldsdsgd dfjf</h3>
+        <h3>jdskfj ds jfkldsjf fgdf khjdf g dfgjk dfsg</h3>
+    </div>
+</div>
+
+<script>
+    let onClickChange = document.getElementById("contentType");
+    onClickChange.addEventListener("change", function () {
+        let onClickChangeValue = onClickChange.value;
+        let fields = [
+        kobitaText = document.getElementById("kobitaText"),
+        golpoText = document.getElementById("golpoText"),
+        imageField = document.getElementById("imageFile"),
+        videoField = document.getElementById("videoField"),
+        pdfField = document.getElementById("pdfField")
+        ]
+        for ( i in fields) {
+            fields[i].style.display = "none";
+        }
+
+        switch (onClickChangeValue) {
+            case "kobita":
+                kobitaText.style.display = "block";
+                break;
+
+            case "golpo":
+            case "probondho":
+                golpoText.style.display = "block";
+                break;
+
+            case "chobi":
+                golpoText.style.display = "block";
+                imageField.style.display = "block";
+                break;
+
+            case "cinemaReview":
+            case "boiReview":
+            case "rannaBanna":
+            case "other":
+                golpoText.style.display = "block";
+                videoField.style.display = "block";
+                // videoField.style.accept = "image/*, video/*";
+                break;
+            case "boiBahar":
+                golpoText.style.display = "block";
+                pdfField.style.display = "block";
+        }
+    }, false);
+</script>
+
+{% endblock content_block %}

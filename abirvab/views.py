@@ -23,7 +23,30 @@ def text_to_html(oldText):
 
 # Create your views here.
 def index(request):
-    return render(request, "content.html")
+    allContents = Content.objects.all().order_by("contentAddingTime")
+    allContentsList = []
+    for item in allContents:
+        if item.contentType == "kobita":
+            allContentsList.append(item.kobita)
+        elif item.contentType == "golpo":
+            allContentsList.append(item.golpo)
+        elif item.contentType == "chobi":
+            allContentsList.append(item.chobi)
+        elif item.contentType == "cinemareviews":
+            allContentsList.append(item.cinemareviews)
+        elif item.contentType == "boireviews":
+            allContentsList.append(item.boireviews)
+        elif item.contentType == "rannabanna":
+            allContentsList.append(item.rannabanna)
+        elif item.contentType == "probondho":
+            allContentsList.append(item.probondho)
+        elif item.contentType == "boi":
+            allContentsList.append(item.boi)
+        elif item.contentType == "other":
+            allContentsList.append(item.other)
+    
+    context = {"allContents": allContents,"allContentsList": allContentsList }
+    return render(request, "index.html", context)
 
 def view_content(request, contentType):
     if contentType == "kobita":
@@ -183,8 +206,3 @@ def add_content(request):
 
         return redirect("/")
     return render(request, "addContent.html")
-
-
-    # add content
-    # store correctly
-    # show all content

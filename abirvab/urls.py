@@ -7,5 +7,6 @@ from abirvab import views
 urlpatterns = [
     path("", views.index),
     path("view/<str:contentType>", views.view_content,  name="viewContent"),
-    path("addcontent", views.add_content)
+    path("addcontent", views.add_content),
+    path("logmein", views.logmein),
 ]

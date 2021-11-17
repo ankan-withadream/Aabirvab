@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from .models import *
 from django.db.models import Max
+from django.contrib.auth import login, logout, authenticate
+from django.contrib import messages
+from django.contrib.auth.models import User
 
 # Behaves like @staticmethod
 def text_to_html(oldText):
@@ -23,7 +26,12 @@ def text_to_html(oldText):
 
 # Create your views here.
 def index(request):
-    allContents = Content.objects.all().order_by("contentAddingTime")
+    if request.user.is_authenticated:
+        user_is_authenticated = True
+        allContents = Content.objects.filter(contentApproval="pending").order_by("-contentAddingTime")
+    else:
+        user_is_authenticated = False
+        allContents = Content.objects.all().order_by("-contentAddingTime")
     allContentsList = []
     for item in allContents:
         if item.contentType == "kobita":
@@ -44,8 +52,20 @@ def index(request):
             allContentsList.append(item.boi)
         elif item.contentType == "other":
             allContentsList.append(item.other)
+
+    if request.method == "POST":
+        contentId = request.POST.get("contentId")
+        acceptation = request.POST.get("accept")
+        theContent = Content.objects.filter(contentId=contentId).first()
+        if acceptation == "approve":
+            theContent.contentApproval = "yes"
+        elif acceptation == "decline":
+            theContent.contentApproval = "no"
+        else:
+            theContent.contentApproval = "pending"
+        theContent.save()
     
-    context = {"allContents": allContents,"allContentsList": allContentsList }
+    context = {"allContents": allContents,"allContentsList": allContentsList, "user_is_authenticated" : user_is_authenticated }
     return render(request, "index.html", context)
 
 def view_content(request, contentType):
@@ -206,3 +226,22 @@ def add_content(request):
 
         return redirect("/")
     return render(request, "addContent.html")
+
+def logmein(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            messages.success(request, "Logged in successfully :)")
+            return redirect("/")
+        else:
+            messages.error(request, 'Incorrect username or password :(')
+        #     return redirect("/login")
+        # user = User.objects.create_user(username=username, password=password)
+        # user.save()
+        # messages.success(request, "Account created successfully")
+        # return redirect("/logmein")
+    
+    return render(request, "logmein.html")

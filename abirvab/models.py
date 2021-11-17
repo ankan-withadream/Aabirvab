@@ -24,6 +24,9 @@ class Content(models.Model):
     contentAddingTime = models.DateTimeField(null=False)
     contentApproval = models.CharField(max_length=7, choices= ADMIN_APPROVALS, default="pending")
 
+    def __str__(self):
+        return str(self.contentId)
+
 class Kobita(models.Model):
     kobitaId = models.IntegerField(null=False, primary_key=True)
     contentId = models.OneToOneField("abirvab.Content", on_delete=models.CASCADE, default=0)
@@ -92,5 +95,4 @@ class Other(models.Model):
     otherFile = models.FileField(null=False, upload_to = "others")
     authorFirstName = models.CharField(max_length=15)
     authorLastName = models.CharField(max_length=15)
-
 

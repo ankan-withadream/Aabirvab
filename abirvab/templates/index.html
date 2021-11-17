@@ -143,6 +143,19 @@
                 </p>
             </div>
             {% endif %}
+
+            {% if user_is_authenticated %}
+            <form action="/" method="post" style="z-index: 10;">
+            {% csrf_token %}
+                <ul>
+                    <li>
+                        <input type="hidden" name="contentId" value="{{item.contentId}}">
+                        <input type="submit" name="accept"value="approve">
+                        <input type="submit" name="accept" value="decline">
+                    </li>
+                </ul>
+            </form>
+            {% endif %}
             {% endfor %}
         <div class="content">
 
